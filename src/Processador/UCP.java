@@ -126,16 +126,16 @@ public class UCP {
 				break;
 				
 			case "sll":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
+				String rss = instrucao.substring(6,11);
+				String rts = instrucao.substring(12,17);
 				shamt = converteDecimal(instrucao.substring(18,23));
-				//ula.sll(rs,rt,shamt);
+				rts = ula.sll(rss,shamt);
 				break;
 			case "srl":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
+				rss = instrucao.substring(6,11);
+				rts = instrucao.substring(12,17);
 				shamt = converteDecimal(instrucao.substring(18,23));
-				//ula.srl(rs,rt,shamt);
+				rts = ula.srl(rss,shamt);
 				break;
 			case "jr":
 				//ula.srl(rs,rt,shamt);
