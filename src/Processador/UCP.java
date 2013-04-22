@@ -2,7 +2,7 @@ package Processador;
 
 import java.io.IOException;
 import java.util.TreeMap;
-
+import Memoria.*;
 import ManipulacaoArquivo.TrataArquivo;
 
 public class UCP {
@@ -10,26 +10,34 @@ public class UCP {
 	private ULA ula; //Pra chamar os métodos direto pelo objeto
 	private TreeMap<String, String> dicionarioInstrucoes = new TreeMap<String, String>();
 	private TreeMap<String, String> dicionarioInstrucoesRFormat = new TreeMap<String, String>(); 
-	
-	private int rs;
-	private int rd;
-	private int rt;
+	private TrataArquivo carregaRegistradores;
+	private TreeMap<String, String> listaDeRegistradores;
+	private Registro registradores;
+	private String rs;
+	private String rd;
+	private String rt;
 	private int address;
 	private int constant;
 	private int offset;
 	private int shamt;
 	private String operacao;
 	private String funcao;
+	private String result;
 	
 	public UCP(String arqRFormat, String arqInstrucoes){	
 		try {
 			dicionarioInstrucoesRFormat = montaHash(arqRFormat);
 			dicionarioInstrucoes = montaHash(arqInstrucoes);
+			carregaRegistradores = new TrataArquivo("Traducoes/Registradores.txt");
+			listaDeRegistradores = carregaRegistradores.carregaMapaDeTraducao();
+			registradores = new Registro(listaDeRegistradores);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		ula = new ULA();
+		
 	}
 	
 	public TreeMap<String, String> montaHash(String arq) throws IOException{
@@ -37,6 +45,7 @@ public class UCP {
 		return leitorDeTraducoes.carregaMapaDeTraducao();
 		
 	}
+	
 	public int converteDecimal(String binario){
 		int decimal = 0, j = 1;
 		for(int i=binario.length(); i >0 ; i--){
@@ -45,12 +54,36 @@ public class UCP {
 		}		
 		return decimal;
 	}
+	
 	public void pularELinkar(int address){
 		//ula.atualizaRa(pc+1);
 		//ula.atualizaPC(address);	
 		
 	}
 	
+	public String acharRegistrador(String codigoBin){
+		String registro = "";
+		
+		for(int i = 0; i < listaDeRegistradores.size(); i++)
+			if (listaDeRegistradores.values().toArray()[i] == codigoBin){
+				registro = (String)listaDeRegistradores.keySet().toArray()[i];
+			}
+		
+		return registro;
+	}
+	
+	private String getBinario(int numero, int casas){
+		String aux;
+		aux = Integer.toString(numero, 2);
+		
+		if(aux.length() != casas){
+			int tamFaltante = casas - aux.length();
+			for(int i = 0; i < tamFaltante; i++)
+				aux = "0" + aux;
+		}
+		
+		return aux;
+	}
 	
 	
 	public void lerInterpretarInstrucao(String instrucao) throws IOException{
@@ -67,6 +100,21 @@ public class UCP {
 				rd = Integer.valueOf(instrucao.substring(18,23));
 				System.out.println("add " + rs + " "+ rt+" "+rd);
 				ula.add(rs,rt,rd);
+				break;
+				
+			case "or":
+				String valor1, valor2;
+				valor1 = valor2 = "";
+				//converte o numero binário presente na instrução para o registrador correspondente.
+				rs = acharRegistrador(instrucao.substring(6, 11));
+				rt = acharRegistrador(instrucao.substring(12,17));
+				rd = acharRegistrador(instrucao.substring(18,23));
+				//tansformo o valor que esta decimal no objeto registrador em binario para q a operação OR possa ser feita
+				valor1 = getBinario(registradores.getValorRegistrador(rs), 32);
+				valor2 = getBinario(registradores.getValorRegistrador(rt), 32);
+				result = ula.or(valor1, valor2);
+				//registradores.setValorRegistrador(rd, result);
+				System.out.println(registradores.getValorRegistrador(rd));
 				break;
 			
 			case "sub":

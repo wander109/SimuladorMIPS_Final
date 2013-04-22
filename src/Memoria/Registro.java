@@ -1,11 +1,12 @@
 package Memoria;
 
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Registro {
 	private HashMap<String, Integer> registradores;
 	
-	public Registro(HashMap<String, String> dicionarioRegistradores) {
+	public Registro(TreeMap<String, String> dicionarioRegistradores) {
 		registradores = new HashMap<String, Integer>();
 		for(int i = 0; i < dicionarioRegistradores.size(); i++)
 			registradores.put((String)dicionarioRegistradores.keySet().toArray()[i], 0);
@@ -15,7 +16,7 @@ public class Registro {
 		return registradores.get(id);
 	}
 
-	public void setValorRegistrador(String id, int valor) {
+	public void setValorRegistrador(String id, String valor) {
 		this.registradores.put(id, valor);
 	}
 	

@@ -8,5 +8,6 @@ Teste:add $a0,$t0,$s2
 beq $t1,$t1,Linha
 j Linha
 jr $t1
+or $t1,$t1,$t1
 add $t1,$t1,$t1
 exit

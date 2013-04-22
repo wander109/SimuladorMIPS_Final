@@ -229,7 +229,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 		
 		@Override
     	public void mouseClicked(MouseEvent e) {
-			
+			System.out.println("rodou");
+			try {
+				ucp.lerInterpretarInstrucao("00000001001010010100100000100101");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	};
 	
