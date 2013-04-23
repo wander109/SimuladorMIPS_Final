@@ -229,6 +229,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 			System.out.println("rodou");
 			try {
 				System.out.println("ler instrução");
+			
 				Memoria memoria = new Memoria();
 				ArrayList prog = new ArrayList();
 				memoria.setCodigoFonteBinario(montador.traduzir());
@@ -238,33 +239,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 					
 					
 				}
-				//or
-				//ucp.lerInterpretarInstrucao("00000001001010010100100000100101");
-				//sub
-				//ucp.lerInterpretarInstrucao("00000001001010000100100000100010");
-				//add
-				//pc = pc + ucp.lerInterpretarInstrucao("00000001001010000100100000100000", pc);
-				//and
-				//pc = ucp.lerInterpretarInstrucao("00000001010010010100100000100100", pc);
-				//mult
-				//ucp.lerInterpretarInstrucao("00000001010010010100100000011000");
-				//div
-				//ucp.lerInterpretarInstrucao("00000001010010010100100000011010");
-				//slr
-				//ucp.lerInterpretarInstrucao("00000000000010000100100011000010");
-				//sll
-				//ucp.lerInterpretarInstrucao("00000000000010000100100011000000");
-				//slt
-				//ucp.lerInterpretarInstrucao("00000000000010000100100000101010");
-				//addi
-				//ucp.lerInterpretarInstrucao("00100001001010000000000000000001");
-				//slti
-				//ucp.lerInterpretarInstrucao("00101001001010000000000000000001");
-				//jr
-				//pc = ucp.lerInterpretarInstrucao("00000001001000000000000000001000", pc);
-				//bne
-				//pc = pc + ucp.lerInterpretarInstrucao("00010101001010000000000000000011", pc);
-				System.out.println(pc);
+				
 			
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -278,7 +253,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 			listaDeRegistradores = carregaRegistradores.carregaMapaDeTraducao();
 			
 			for(int i = 0; i < listaDeRegistradores.size(); i++)
-				listaDeRegistradoresValor.put((String)listaDeRegistradores.keySet().toArray()[i], 0);
+				//olha que doido isso, talvez funfe
+				listaDeRegistradoresValor.put((String)listaDeRegistradores.keySet().toArray()[i], (int)ucp.converteParaDecimal(ucp.registradores.getValorRegistrador((String)listaDeRegistradores.keySet().toArray()[i])));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

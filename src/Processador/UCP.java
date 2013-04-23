@@ -13,7 +13,7 @@ public class UCP {
 	private TreeMap<String, String> dicionarioInstrucoesRFormat = new TreeMap<String, String>(); 
 	private TrataArquivo carregaRegistradores;
 	private TreeMap<String, String> listaDeRegistradores;
-	private Registro registradores;
+	public Registro registradores;
 	private String rs;
 	private String rd;
 	private String rt;
@@ -120,7 +120,7 @@ public class UCP {
 			return res;
 	}
 	
-	private double converteParaDecimal(String binario){
+	public double converteParaDecimal(String binario){
 		  double j=0;
 		    for(int i=0;i<binario.length();i++){
 		        if(binario.charAt(i)== '1'){
@@ -137,7 +137,8 @@ public class UCP {
 	
 	
 	public int lerInterpretarInstrucao(String instrucao, int pc) throws IOException{
-		System.out.println("entrou na UCP");
+		
+		System.out.println("entrou na UCP - pc= " + pc);
 		double num1, num2;
 		int aux;
 		double result;
@@ -492,17 +493,19 @@ public class UCP {
 				break;
 				
 			case "beq":
-				num1 = num2 = 0;
+				
+				valor1 = valor2 = "";
 				//converte o numero binário presente na instrução para o registrador correspondente.
 				rs = acharRegistrador(instrucao.substring(6, 11));
 				System.out.println("rs: "+rs);
-				num1 = converteParaDecimal(registradores.getValorRegistrador(rs));
-				
+				valor1 = registradores.getValorRegistrador(rs);
+				System.out.println(valor1);
 				rt = acharRegistrador(instrucao.substring(11,16));
 				System.out.println("rt: "+rt);
-				num2 = converteParaDecimal(registradores.getValorRegistrador(rt));
+				valor2 = registradores.getValorRegistrador(rt);
+				System.out.println(valor2);
 				
-				if (num1 == num2){
+				if (valor1.equals(valor2)){
 					pc = (int)converteParaDecimal(instrucao.substring(16,32));
 				}
 				else{
@@ -535,6 +538,7 @@ public class UCP {
 				
 			case "j":
 					pc = (int)converteParaDecimal(instrucao.substring(6,32));
+					
 				
 				break;
 				

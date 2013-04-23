@@ -1,0 +1,14 @@
+Linha:add $t1,$t1,$t1
+sub $t0,$t1,$t1
+add $t0,$s0,$s1
+add $t0,$s4,$t7
+srl $t0,$t1,2
+lw $t0,6($s0)
+slti $t0,$t1,1
+Teste:add $a0,$t0,$s2
+beq $t1,$t1,Linha
+j Linha
+jr $t1
+or $t1,$t1,$t1
+add $t1,$t1,$t1
+exit
