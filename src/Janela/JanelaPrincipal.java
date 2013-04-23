@@ -239,9 +239,10 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 				                "Registradores", "Número", "Valor"
 				                
 				            }
+				           
 				        ));
-				
-				
+					tbRegistradores.getRowSorter().toggleSortOrder(1);
+					 
 					
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -273,6 +274,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 				                
 				            }
 				        ));
+					tbRegistradores.getRowSorter().toggleSortOrder(1);
 				}
 				
 				
