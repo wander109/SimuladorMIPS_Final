@@ -52,6 +52,13 @@ public class ULA {
 	
 	public String or(String a1, String a2){
 		String result = "";
+		
+		if (a1.length() > a2.length()){
+			while (a1.length() > a2.length()) {
+				a2 = "0" + a2;
+			}
+		}
+		
 		for (int i = 0; i< a1.length(); i++ ){
 			
 			if ((a1.charAt(i) != '1') && (a2.charAt(i) != '1') ){
@@ -69,6 +76,13 @@ public class ULA {
 
 	public String and(String a1, String a2){
 		String result = "";
+		
+		if (a1.length() > a2.length()){
+			while (a1.length() > a2.length()) {
+				a2 = "0" + a2;
+			}
+		}
+		
 		for (int i = 0; i< a1.length(); i++ ){
 			if ((a1.charAt(i) == '1') && (a2.charAt(i)=='1') ){
 				result = result + "1";

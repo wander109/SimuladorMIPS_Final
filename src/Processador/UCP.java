@@ -532,26 +532,68 @@ public class UCP {
 				break;
 				
 			case "j":
-				num1 = num2 = 0;
-				//converte o numero binário presente na instrução para o registrador correspondente.
-				rs = acharRegistrador(instrucao.substring(6, 11));
-				System.out.println("rs: "+rs);
-				num1 = converteParaDecimal(registradores.getValorRegistrador(rs));
-				
-				rt = acharRegistrador(instrucao.substring(11,16));
-				System.out.println("rt: "+rt);
-				num2 = converteParaDecimal(registradores.getValorRegistrador(rt));
-				
-				if (num1 != num2){
-					pc = (int)converteParaDecimal(instrucao.substring(16,32));
-				}
-				else{
-					pc = pc + 1;
-				}
-			
+					pc = (int)converteParaDecimal(instrucao.substring(6,32));
 				
 				break;
 				
+			case "jal":
+				
+				registradores.setValorRegistrador("$ra", String.valueOf(pc + 1) );
+				pc = (int)converteParaDecimal(instrucao.substring(6,32));
+			
+			break;
+				
+			case "andi":
+				valor1 = valor2 = "";
+				//converte o numero binário presente na instrução para o registrador correspondente.
+				rs = acharRegistrador(instrucao.substring(6, 11));
+				System.out.println("rs: "+rs);
+				
+				rt = acharRegistrador(instrucao.substring(11,16));
+				System.out.println("rt: "+rt);
+				
+				
+				//pego o valor do registrador e transformo de bin para decimal.
+				System.out.println("Valor do registrador rs= "+ registradores.getValorRegistrador(rs));
+				valor1 = registradores.getValorRegistrador(rs);
+				System.out.println("valor1 = "+ valor1);
+				
+				valor2 = instrucao.substring(16,32);
+				System.out.println("valor2 = "+ valor2);
+				
+				Result = ula.and(valor1, valor2);
+				registradores.setValorRegistrador(rt, Result);
+				System.out.println("resultado = " + Result);
+				
+				
+				System.out.println("Valor Registrador Rt= " + registradores.getValorRegistrador(rt));
+				break;	
+				
+			case "ori":
+				valor1 = valor2 = "";
+				//converte o numero binário presente na instrução para o registrador correspondente.
+				rs = acharRegistrador(instrucao.substring(6, 11));
+				System.out.println("rs: "+rs);
+				
+				rt = acharRegistrador(instrucao.substring(11,16));
+				System.out.println("rt: "+rt);
+				
+				
+				//pego o valor do registrador e transformo de bin para decimal.
+				System.out.println("Valor do registrador rs= "+ registradores.getValorRegistrador(rs));
+				valor1 = registradores.getValorRegistrador(rs);
+				System.out.println("valor1 = "+ valor1);
+				
+				valor2 = instrucao.substring(16,32);
+				System.out.println("valor2 = "+ valor2);
+				
+				Result = ula.or(valor1, valor2);
+				registradores.setValorRegistrador(rt, Result);
+				System.out.println("resultado = " + Result);
+				
+				
+				System.out.println("Valor Registrador Rt= " + registradores.getValorRegistrador(rt));
+				break;
 
 				
 		/*	case "j":
