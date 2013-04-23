@@ -217,9 +217,36 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 		
 		@Override
     	public void mouseClicked(MouseEvent e) {
-			int numProxLinha = tbMemoria.getSelectedRow() + 1;
-			if(numProxLinha < tbMemoria.getRowCount())
-				tbMemoria.setRowSelectionInterval(numProxLinha, numProxLinha);
+			
+			memoria = new Memoria();
+			ArrayList prog = new ArrayList();
+			memoria.setCodigoFonteBinario(montador.traduzir());
+			prog = memoria.getCodigoFonteBinario();
+			
+			if(pc < tbMemoria.getRowCount())
+				tbMemoria.setRowSelectionInterval(pc, pc);
+			try {
+				System.out.println("ler instrução");
+			
+				
+				
+					pc = ucp.lerInterpretarInstrucao(prog.get(pc).toString(), pc);
+					
+					tbRegistradores.setModel(new javax.swing.table.DefaultTableModel(
+				            getTabelaDeRegistradores(),
+				            new String [] {
+				                "Registradores", "Número", "Valor"
+				                
+				            }
+				        ));
+				
+				
+					
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
 		}
 	};
 	
