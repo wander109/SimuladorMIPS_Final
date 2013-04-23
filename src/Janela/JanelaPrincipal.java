@@ -231,19 +231,23 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 			try {
 				System.out.println("ler instrução");
 			
-				Memoria memoria = new Memoria();
+				memoria = new Memoria();
 				ArrayList prog = new ArrayList();
 				memoria.setCodigoFonteBinario(montador.traduzir());
 				prog = memoria.getCodigoFonteBinario();
-				for(pc = 0; pc < prog.size(); pc++){
+				while (pc != prog.size()){
 					ucp.lerInterpretarInstrucao(prog.get(pc).toString(), pc);
-					
-					
-					
-					
+					pc = pc+1;
+					tbRegistradores.setModel(new javax.swing.table.DefaultTableModel(
+				            getTabelaDeRegistradores(),
+				            new String [] {
+				                "Registradores", "Número", "Valor"
+				                
+				            }
+				        ));
 				}
 				
-			
+				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -271,7 +275,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 		for(int i = 0; i < listaDeRegistradoresValor.size(); i++){
 			matrizRegistradorNumeroValor[i][0] = (String)registradores[i];
 			matrizRegistradorNumeroValor[i][1] = listaDeRegistradores.get((String)registradores[i]);
-			matrizRegistradorNumeroValor[i][2] = 0;
+			matrizRegistradorNumeroValor[i][2] = (int)ucp.converteParaDecimal(ucp.registradores.getValorRegistrador((String)registradores[i]));
 		}
 		
 		return matrizRegistradorNumeroValor;
