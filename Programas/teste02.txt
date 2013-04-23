@@ -1,0 +1,8 @@
+Linha:addi $t1,$t1,3
+addi $t2,$t2,6
+add $t3,$zero,$t2
+sub $t2,$t2,$t2
+beq $t3,$t1,Fim
+j Linha
+Fim:addi $t1,$t1,3
+exit

@@ -236,8 +236,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 				memoria.setCodigoFonteBinario(montador.traduzir());
 				prog = memoria.getCodigoFonteBinario();
 				while (pc != prog.size()){
-					ucp.lerInterpretarInstrucao(prog.get(pc).toString(), pc);
-					pc = pc+1;
+					pc = ucp.lerInterpretarInstrucao(prog.get(pc).toString(), pc);
+					
 					tbRegistradores.setModel(new javax.swing.table.DefaultTableModel(
 				            getTabelaDeRegistradores(),
 				            new String [] {

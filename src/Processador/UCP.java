@@ -493,7 +493,7 @@ public class UCP {
 				break;
 				
 			case "beq":
-				
+				System.out.println("-- beq --");
 				valor1 = valor2 = "";
 				//converte o numero binário presente na instrução para o registrador correspondente.
 				rs = acharRegistrador(instrucao.substring(6, 11));
@@ -512,7 +512,8 @@ public class UCP {
 					pc = pc + 1;
 				}
 			
-				
+				System.out.println(pc);
+
 				break;
 				
 			case "bne":
@@ -537,8 +538,9 @@ public class UCP {
 				break;
 				
 			case "j":
+				System.out.println("-- j --");
 					pc = (int)converteParaDecimal(instrucao.substring(6,32));
-					
+					System.out.println(pc);
 				
 				break;
 				
