@@ -63,12 +63,15 @@ public class UCP {
 	
 	public String acharRegistrador(String codigoBin){
 		String registro = "";
-		System.out.println("entrou no acharRegistrador");
 		
-		for(int i = 0; i < listaDeRegistradores.size(); i++)
-			if (listaDeRegistradores.values().toArray()[i] == codigoBin){
-				registro = (String)listaDeRegistradores.keySet().toArray()[i];
+		for(int i = 0; i < listaDeRegistradores.size(); i++){
+			String aux = listaDeRegistradores.get(listaDeRegistradores.keySet().toArray()[i]);
+			if	(aux.equals(codigoBin)){
+				registro = String.valueOf(listaDeRegistradores.keySet().toArray()[i]);
+				return registro;
 			}
+		
+		}
 		System.out.println(registro);
 		return registro;
 	}
@@ -88,13 +91,12 @@ public class UCP {
 	
 	
 	public void lerInterpretarInstrucao(String instrucao) throws IOException{
-		System.out.print("entrou na UCP");
+		System.out.println("entrou na UCP");
 		String op = instrucao.substring(0,6); 
-		System.out.println("\n"+op);
+		
 		if(op.equals("000000")){ 
 			
 			funcao = String.valueOf(instrucao.subSequence(26,32));
-			System.out.println("function: "+funcao);
 			operacao = dicionarioInstrucoesRFormat.get(funcao);
 			switch (operacao) {
 			case "add":
@@ -106,20 +108,28 @@ public class UCP {
 				break;
 				
 			case "or":
-				System.out.println("entrou no or");
 				String valor1, valor2;
 				valor1 = valor2 = "";
 				//converte o numero binário presente na instrução para o registrador correspondente.
 				rs = acharRegistrador(instrucao.substring(6, 11));
+			
 				System.out.println("rs: "+rs);
-				rt = acharRegistrador(instrucao.substring(12,17));
+				
+				rt = acharRegistrador(instrucao.substring(11,16));
+			
 				System.out.println("rt: "+rt);
-				rd = acharRegistrador(instrucao.substring(18,23));
+				
+				rd = acharRegistrador(instrucao.substring(16,21));
+			
 				System.out.println("rd: "+rd);
+				
 				//tansformo o valor que esta decimal no objeto registrador em binario para q a operação OR possa ser feita
 				valor1 = getBinario(registradores.getValorRegistrador(rs), 32);
+				System.out.println("valor1 = "+ valor1);
 				valor2 = getBinario(registradores.getValorRegistrador(rt), 32);
+				System.out.println("valor2 = "+ valor2);
 				result = ula.or(valor1, valor2);
+				System.out.println(result);
 				//registradores.setValorRegistrador(rd, result);
 				System.out.println(registradores.getValorRegistrador(rd));
 				break;
