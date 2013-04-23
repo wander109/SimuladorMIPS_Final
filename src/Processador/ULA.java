@@ -14,9 +14,9 @@ public class ULA {
 	}
 	
 	
-	public String sub(int rs, int rd, int rt){
-		rt = rs - rd;
-		return String.valueOf(rt);	
+	public int sub(int rs, int rt){
+		int result = rs - rt;
+		return result;	
 		
 	}
 	
@@ -49,11 +49,12 @@ public class ULA {
 	public String or(String a1, String a2){
 		String result = "";
 		for (int i = 0; i< a1.length(); i++ ){
-			if ((a1.charAt(i) == 1) || (a2.charAt(i)==1) ){
-				result = result + "1";
+			
+			if ((a1.charAt(i) != 1) && (a2.charAt(i)!= 1) ){
+				result = result + "0";
 			}
 			else{
-				result = result + "0";
+				result = result + "1";
 			}	
 		}
 		

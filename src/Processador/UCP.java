@@ -80,6 +80,7 @@ public class UCP {
 		String aux;
 		aux = Integer.toString(numero, 2);
 		
+		
 		if(aux.length() != casas){
 			int tamFaltante = casas - aux.length();
 			for(int i = 0; i < tamFaltante; i++)
@@ -89,9 +90,18 @@ public class UCP {
 		return aux;
 	}
 	
+	private int converteParaDecimal(String binario){
+		int aux;
+		aux = Integer.parseInt(binario, 2);
+		return aux;
+	}
+	
 	
 	public void lerInterpretarInstrucao(String instrucao) throws IOException{
 		System.out.println("entrou na UCP");
+		
+		int result;
+		String Result;
 		String op = instrucao.substring(0,6); 
 		
 		if(op.equals("000000")){ 
@@ -112,37 +122,59 @@ public class UCP {
 				valor1 = valor2 = "";
 				//converte o numero binário presente na instrução para o registrador correspondente.
 				rs = acharRegistrador(instrucao.substring(6, 11));
-			
 				System.out.println("rs: "+rs);
 				
 				rt = acharRegistrador(instrucao.substring(11,16));
-			
 				System.out.println("rt: "+rt);
 				
 				rd = acharRegistrador(instrucao.substring(16,21));
-			
 				System.out.println("rd: "+rd);
 				
 				//tansformo o valor que esta decimal no objeto registrador em binario para q a operação OR possa ser feita
-				valor1 = getBinario(registradores.getValorRegistrador(rs), 32);
+				valor1 = registradores.getValorRegistrador(rs);
 				System.out.println("valor1 = "+ valor1);
-				valor2 = getBinario(registradores.getValorRegistrador(rt), 32);
+				
+				valor2 = registradores.getValorRegistrador(rt);
 				System.out.println("valor2 = "+ valor2);
-				result = ula.or(valor1, valor2);
-				System.out.println(result);
-				//registradores.setValorRegistrador(rd, result);
-				System.out.println(registradores.getValorRegistrador(rd));
+				
+				Result = ula.or(valor1, valor2);
+				System.out.println("resultado= " + Result);
+				registradores.setValorRegistrador(rd, Result);	
+				System.out.println("valor registrador Rd = " + registradores.getValorRegistrador(rd));
 				break;
 			
-			/* case "sub":
-				//rs = Integer.valueOf(instrucao.substring(6,11));
-				//rt = Integer.valueOf(instrucao.substring(12,17));
-				//rd = Integer.valueOf(instrucao.substring(18,23));
-				System.out.println("add " + rs + " "+ rt+" "+rd);
-				ula.sub(rs,rt,rd);
+			case "sub":
+				int num1, num2;
+				num1 = num2 = 0;
+				//converte o numero binário presente na instrução para o registrador correspondente.
+				rs = acharRegistrador(instrucao.substring(6, 11));
+				System.out.println("rs: "+rs);
+				
+				rt = acharRegistrador(instrucao.substring(11,16));
+				System.out.println("rt: "+rt);
+				
+				rd = acharRegistrador(instrucao.substring(16,21));
+				System.out.println("rd: "+rd);
+				
+				//pego o valor do registrador e transformo de bin para decimal.
+				System.out.println("Valor do registrador rs= "+ registradores.getValorRegistrador(rs));
+				num1 = converteParaDecimal(registradores.getValorRegistrador(rs));
+				System.out.println("num1 = "+ num1);
+				
+				System.out.println("Valor do registrador rt= "+ registradores.getValorRegistrador(rt));
+				num2 = converteParaDecimal(registradores.getValorRegistrador(rt));
+				System.out.println("num2 = "+ num2);
+				
+				
+				result = ula.sub(num1, num2);
+				registradores.setValorRegistrador(rd, getBinario(result, 32));
+				System.out.println("resultado = " + getBinario(result, 32));
+				
+				
+				System.out.println("Valor Registrador Rd= " + registradores.getValorRegistrador(rd));
 				break;
 				
-			case "sll":
+		/* 	case "sll":
 				String rss = instrucao.substring(6,11);
 				String rts = instrucao.substring(12,17);
 				shamt = converteDecimal(instrucao.substring(18,23));

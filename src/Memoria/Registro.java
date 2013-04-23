@@ -4,27 +4,28 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 public class Registro {
-	private HashMap<String, Integer> registradores;
+	private HashMap<String, String> registradores;
 	
 	public Registro(TreeMap<String, String> dicionarioRegistradores) {
-		registradores = new HashMap<String, Integer>();
+		registradores = new HashMap<String, String>();
 		for(int i = 0; i < dicionarioRegistradores.size(); i++)
-			registradores.put((String)dicionarioRegistradores.keySet().toArray()[i], 0);
+			registradores.put((String)dicionarioRegistradores.keySet().toArray()[i], "11111111111111111111111111111111");
 	}
 
-	public Integer getValorRegistrador(String id) {
+	public String getValorRegistrador(String id) {
 		return registradores.get(id);
 	}
 
-	public void setValorRegistrador(String id, int valor) {
+	public void setValorRegistrador(String id, String valor) {
 		this.registradores.put(id, valor);
 	}
 	
-	public void atualizaRegistrador(String id, int valor){
+/*	public void atualizaRegistrador(String id, int valor){
 		int valorAtual = registradores.get(id);
 		int novoValor = valorAtual + valor;
 		
 		registradores.put(id, novoValor);
-	}
+	} 
+	*/
 	
 }

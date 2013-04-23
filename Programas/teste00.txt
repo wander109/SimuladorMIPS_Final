@@ -1,4 +1,5 @@
 Linha:add $t1,$t1,$t1
+sub $t0,$t1,$t1
 add $t0,$s0,$s1
 add $t0,$s4,$t7
 srl $t0,$t1,2
