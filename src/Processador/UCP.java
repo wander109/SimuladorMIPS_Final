@@ -63,12 +63,13 @@ public class UCP {
 	
 	public String acharRegistrador(String codigoBin){
 		String registro = "";
+		System.out.println("entrou no acharRegistrador");
 		
 		for(int i = 0; i < listaDeRegistradores.size(); i++)
 			if (listaDeRegistradores.values().toArray()[i] == codigoBin){
 				registro = (String)listaDeRegistradores.keySet().toArray()[i];
 			}
-		
+		System.out.println(registro);
 		return registro;
 	}
 	
@@ -87,7 +88,7 @@ public class UCP {
 	
 	
 	public void lerInterpretarInstrucao(String instrucao) throws IOException{
-		
+		System.out.print("entrou na UCP");
 		String op = instrucao.substring(0,6); 
 		if(op.equals("000000")){ 
 			
@@ -95,14 +96,15 @@ public class UCP {
 			operacao = dicionarioInstrucoesRFormat.get(funcao);
 			switch (operacao) {
 			case "add":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
-				rd = Integer.valueOf(instrucao.substring(18,23));
+				//rs = Integer.valueOf(instrucao.substring(6,11));
+				//rt = Integer.valueOf(instrucao.substring(12,17));
+				//rd = Integer.valueOf(instrucao.substring(18,23));
 				System.out.println("add " + rs + " "+ rt+" "+rd);
-				ula.add(rs,rt,rd);
+				//ula.add(rs,rt,rd);
 				break;
 				
 			case "or":
+				System.out.println("entrou no or");
 				String valor1, valor2;
 				valor1 = valor2 = "";
 				//converte o numero binário presente na instrução para o registrador correspondente.
@@ -117,10 +119,10 @@ public class UCP {
 				System.out.println(registradores.getValorRegistrador(rd));
 				break;
 			
-			case "sub":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
-				rd = Integer.valueOf(instrucao.substring(18,23));
+			/* case "sub":
+				//rs = Integer.valueOf(instrucao.substring(6,11));
+				//rt = Integer.valueOf(instrucao.substring(12,17));
+				//rd = Integer.valueOf(instrucao.substring(18,23));
 				System.out.println("add " + rs + " "+ rt+" "+rd);
 				ula.sub(rs,rt,rd);
 				break;
@@ -141,19 +143,19 @@ public class UCP {
 				//ula.srl(rs,rt,shamt);
 				break;
 			default:
-				break;
+				break; */
 			}
 		} else{
 			operacao = dicionarioInstrucoes.get(op);
 			switch (operacao) {
 			case "addi":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
+			//	rs = Integer.valueOf(instrucao.substring(6,11));
+				//rt = Integer.valueOf(instrucao.substring(12,17));
 				address =  converteDecimal(instrucao.substring(18,31));
 				//ula.addi(rs,rt,address);
 				break;
 				
-			case "j":
+		/*	case "j":
 				address =  converteDecimal(instrucao.substring(6,31));
 				//ula.atualizaPC(address);
 				break;
@@ -246,7 +248,7 @@ public class UCP {
 				break;
 			
 			default:
-				break;
+				break; */
 			}
 			
 		

@@ -231,7 +231,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     	public void mouseClicked(MouseEvent e) {
 			System.out.println("rodou");
 			try {
+				System.out.println("ler intrução");
 				ucp.lerInterpretarInstrucao("00000001001010010100100000100101");
+				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

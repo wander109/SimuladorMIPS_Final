@@ -16,7 +16,7 @@ public class Registro {
 		return registradores.get(id);
 	}
 
-	public void setValorRegistrador(String id, String valor) {
+	public void setValorRegistrador(String id, int valor) {
 		this.registradores.put(id, valor);
 	}
 	
