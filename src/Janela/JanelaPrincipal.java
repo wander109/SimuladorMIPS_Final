@@ -243,7 +243,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 				//sub
 				//ucp.lerInterpretarInstrucao("00000001001010000100100000100010");
 				//add
-				pc = pc + ucp.lerInterpretarInstrucao("00000001001010000100100000100000", pc);
+				//pc = pc + ucp.lerInterpretarInstrucao("00000001001010000100100000100000", pc);
 				//and
 				//pc = ucp.lerInterpretarInstrucao("00000001010010010100100000100100", pc);
 				//mult

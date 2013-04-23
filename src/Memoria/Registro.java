@@ -9,7 +9,7 @@ public class Registro {
 	public Registro(TreeMap<String, String> dicionarioRegistradores) {
 		registradores = new HashMap<String, String>();
 		for(int i = 0; i < dicionarioRegistradores.size(); i++)
-			registradores.put((String)dicionarioRegistradores.keySet().toArray()[i], "00000000000000000000000000000011");
+			registradores.put((String)dicionarioRegistradores.keySet().toArray()[i], "00000000000000000000000000000000");
 	}
 
 	public String getValorRegistrador(String id) {
