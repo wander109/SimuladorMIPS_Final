@@ -8,6 +8,7 @@ import java.util.TreeMap;
 
 import ManipulacaoArquivo.TrataArquivo;
 import Memoria.Memoria;
+import Memoria.Registro;
 import Processador.Montador;
 import Processador.UCP;
 
@@ -238,6 +239,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 					ucp.lerInterpretarInstrucao(prog.get(pc).toString(), pc);
 					
 					
+					
+					
 				}
 				
 			
@@ -263,6 +266,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 	private Object[][] getTabelaDeRegistradores(){
 		Object[] registradores = listaDeRegistradoresValor.keySet().toArray();
 		Object[][] matrizRegistradorNumeroValor = new Object[registradores.length][3];
+		ArrayList<Registro> regs = new ArrayList<Registro>();
 		
 		for(int i = 0; i < listaDeRegistradoresValor.size(); i++){
 			matrizRegistradorNumeroValor[i][0] = (String)registradores[i];
