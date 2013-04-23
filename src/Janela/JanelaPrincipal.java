@@ -222,7 +222,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 			ArrayList prog = new ArrayList();
 			memoria.setCodigoFonteBinario(montador.traduzir());
 			prog = memoria.getCodigoFonteBinario();
-			
+			if (pc == tbMemoria.getRowCount())
+				return;
 			if(pc < tbMemoria.getRowCount())
 				tbMemoria.setRowSelectionInterval(pc, pc);
 			try {
