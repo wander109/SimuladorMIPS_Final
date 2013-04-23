@@ -127,8 +127,8 @@ public class Montador {
 			//implementa o preenchimento do rs rt e rd da forma correta e seta o shamt
 			//por default o rt e zerado
 			
-			rd = dicionarioRegistradores.get(parametrosAux[0]);
-			rs = dicionarioRegistradores.get(parametrosAux[1]);
+			rt = dicionarioRegistradores.get(parametrosAux[0]);
+			rd = dicionarioRegistradores.get(parametrosAux[1]);
 			shamt = getBinario(Integer.valueOf(parametrosAux[2]), 5);
 		}else{
 			//Caso seja uma traducao de add, sub, slt, sgt

@@ -8,9 +8,9 @@ public class ULA {
 
 	
 	//as funções do tipo I é o mesmo método
-	public String add(int rs, int rd, int rt){ 
-		rt = rs + rd;
-		return String.valueOf(rt);
+	public double add(double rs, double rt){ 
+		double result = rs + rt;
+		return result;
 	}
 	
 	
@@ -20,27 +20,31 @@ public class ULA {
 		
 	}
 	
-	public String div(int a1, int a2){
-		int div;
-		div = a1/a2;
-		return String.valueOf(div);	
+	public double div(double a1, double a2){
+		double div;
+		div = (int)a1/a2;
+		return div;	
 	}
 	
 	
-	public String mult(int a1, int a2){
-		int mult;
-		mult = a1*a2;
-		return String.valueOf(mult);	
+	public double mult(double a1, double a2){
+		double mult = a1*a2;
+		return mult;	
 	}
 	
-	//os shifts estão errados, vou re-ver isso amanha
 	public String srl(String a1, int qntde){
 		a1 = a1.substring(0, (a1.length() - qntde));
+		for (int i = 0; i < qntde; i++){
+			a1 = "0" + a1 ;
+		}
 		return a1;
 	}
 
 	public String sll(String a1, int qntde){
-		a1 = a1.substring(qntde, (a1.length()-1));
+		a1 = a1.substring(qntde,a1.length());
+		for (int i = 0; i < qntde; i++){
+			a1 = a1 + "0";
+		}
 		return a1;
 	}
 	
@@ -50,7 +54,7 @@ public class ULA {
 		String result = "";
 		for (int i = 0; i< a1.length(); i++ ){
 			
-			if ((a1.charAt(i) != 1) && (a2.charAt(i)!= 1) ){
+			if ((a1.charAt(i) != '1') && (a2.charAt(i) != '1') ){
 				result = result + "0";
 			}
 			else{
@@ -66,7 +70,7 @@ public class ULA {
 	public String and(String a1, String a2){
 		String result = "";
 		for (int i = 0; i< a1.length(); i++ ){
-			if ((a1.charAt(i) == 1) && (a2.charAt(i)==1) ){
+			if ((a1.charAt(i) == '1') && (a2.charAt(i)=='1') ){
 				result = result + "1";
 			}
 			else{
@@ -76,6 +80,17 @@ public class ULA {
 		
 		return result;
 
+	}
+	
+	public double slt(double a, double b){
+		double result;
+		if (a < b){
+			result = 1;
+		}
+		else{
+			result = 0;
+		}
+		return result;
 	}
 	
 	

@@ -35,7 +35,7 @@ mfhi ?
 mthi ?
 mflo ?
 mtlo ?
-multi R
+mult R
 multu R
 div R
 divu R
