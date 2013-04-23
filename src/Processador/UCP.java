@@ -89,10 +89,10 @@ public class UCP {
 	
 	public void lerInterpretarInstrucao(String instrucao) throws IOException{
 		System.out.print("entrou na UCP");
-		String op = instrucao.substring(0,6); 
+		String op = instrucao.substring(0,5); 
 		if(op.equals("000000")){ 
 			
-			funcao = String.valueOf(instrucao.subSequence(26,32));  
+			funcao = String.valueOf(instrucao.subSequence(26,31));  
 			operacao = dicionarioInstrucoesRFormat.get(funcao);
 			switch (operacao) {
 			case "add":

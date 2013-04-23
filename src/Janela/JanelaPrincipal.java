@@ -1,19 +1,15 @@
 package Janela;
 
-import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeMap;
-import java.util.HashSet;
-import java.util.Map;
 
 import ManipulacaoArquivo.TrataArquivo;
-import Memoria.*;
-import Processador.*;
+import Memoria.Memoria;
+import Processador.Montador;
+import Processador.UCP;
 
 /**
  *
@@ -22,7 +18,7 @@ import Processador.*;
 public class JanelaPrincipal extends javax.swing.JFrame {
 	
 	// Variables declaration - do not modify                     
-    //===========Obejtos da Tela======================================
+    //===========Obejetos da Tela======================================
 	private javax.swing.JButton btAbrir;
     private javax.swing.JButton btRodar;
     private javax.swing.JButton btStep;
@@ -42,7 +38,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     //========a traducao e interpretacao do codigo MIPS===============
     private Memoria memoria;
     private Montador montador;
-    private UCP ucp;
+    private UCP ucp = new UCP("Traducoes/InstrucoesRFormatBIN.txt","Traducoes/InstrucoesBIN.txt");
     // End of variables declaration
     
     /**
@@ -231,8 +227,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     	public void mouseClicked(MouseEvent e) {
 			System.out.println("rodou");
 			try {
-				System.out.println("ler intrução");
-				ucp.lerInterpretarInstrucao("00000001001010010100100000100101");
+				System.out.println("ler instrução");
+				ucp.lerInterpretarInstrucao("000000 01001 01001 01001 00000 100101");
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
