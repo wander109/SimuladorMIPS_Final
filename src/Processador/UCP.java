@@ -458,6 +458,7 @@ public class UCP {
 				
 				
 				System.out.println("Valor Registrador Rt= " + registradores.getValorRegistrador(rt));
+				pc = pc +1;
 				break;
 				
 			case "slti":
@@ -487,6 +488,7 @@ public class UCP {
 				
 				
 				System.out.println("Valor Registrador Rt= " + registradores.getValorRegistrador(rt));
+				pc = pc +1;
 				break;
 				
 			case "beq":
@@ -567,6 +569,7 @@ public class UCP {
 				
 				
 				System.out.println("Valor Registrador Rt= " + registradores.getValorRegistrador(rt));
+				pc = pc +1;
 				break;	
 				
 			case "ori":
@@ -593,103 +596,63 @@ public class UCP {
 				
 				
 				System.out.println("Valor Registrador Rt= " + registradores.getValorRegistrador(rt));
+				pc = pc +1;
+				break;
+				
+			case "lw":
+				aux = 0;
+				valor1 = valor2 = "";
+				//converte o numero binário presente na instrução para o registrador correspondente.
+				rs = acharRegistrador(instrucao.substring(6, 11));
+				System.out.println("rs: "+rs);
+				
+				rt = acharRegistrador(instrucao.substring(11,16));
+				System.out.println("rt: "+rt);
+				
+				aux = (int)converteParaDecimal(instrucao.substring(16,32));
+				System.out.println("num1 = "+ aux);
+				
+				valor1 = registradores.getValorRegistrador(rs);
+				
+				valor2 = "0000000000000000000000000000" + valor1.substring(aux,(aux + 4));
+				
+				registradores.setValorRegistrador(rt, valor2);
+				System.out.println("Valor Registrador Rt= " + registradores.getValorRegistrador(rt));
+				pc = pc +1;
+				break;
+				
+			case "sw":
+				aux = 0;
+				valor1 = valor2 = "";
+				//converte o numero binário presente na instrução para o registrador correspondente.
+				rs = acharRegistrador(instrucao.substring(6, 11));
+				System.out.println("rs: "+rs);
+				
+				rt = acharRegistrador(instrucao.substring(11,16));
+				System.out.println("rt: "+rt);
+				
+				aux = (int)converteParaDecimal(instrucao.substring(16,32));
+				System.out.println("num1 = "+ aux);
+				
+				valor1 = registradores.getValorRegistrador(rt);
+				
+				valor2 = "0000000000000000000000000000" + valor1.substring(aux,(aux + 4));
+				
+				registradores.setValorRegistrador(rs, valor2);
+				System.out.println("Valor Registrador Rs= " + registradores.getValorRegistrador(rt));
+				pc = pc +1;
+				break;
+				
+			case "lui":
+				
+				
+				pc = pc +1;
 				break;
 
 				
-		/*	case "j":
-				address =  converteDecimal(instrucao.substring(6,31));
-				//ula.atualizaPC(address);
-				break;
-				
-			case "jal":
-				address =  converteDecimal(instrucao.substring(6,31));
-				//this.pularELinkar();
-				break;
-				
-			case "beq":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
-				address =  converteDecimal(instrucao.substring(18,31));
-				//ula.beq(rs,rt,address);
-				break;
-				
-			case "bnq":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
-				address =  converteDecimal(instrucao.substring(18,31));
-				//ula.bnq(rs,rt,address);
-				break;	
-				
-			case "blez":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
-				//ula.blez(rs,rt,0);
-				break;	
-				
-			case "bgtz":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
-				address =  converteDecimal(instrucao.substring(18,31));
-				//ula.bgtz(rs,rt,address);
-				break;	
-				
-			case "addiu":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
-				constant =  converteDecimal(instrucao.substring(18,31));
-				//ula.addiu(rs,rt,constant);
-				break;
-				
-			case "slti":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
-				constant =  converteDecimal(instrucao.substring(18,31));
-				//ula.slti(rs,rt,constant);
-				break;
-				
-			case "sltiu":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
-				constant =  converteDecimal(instrucao.substring(18,31));
-				//ula.sltiu(rs,rt,constant);
-				break;	
-				
-			case "andi":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
-				constant =  converteDecimal(instrucao.substring(18,31));
-				//ula.andi(rs,rt,constant);
-				break;	
-				
-			case "ori":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,17));
-				constant =  converteDecimal(instrucao.substring(18,31));
-				//ula.ori(rs,rt,constant);
-				break;	
-				
-			case "lui":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				address =  converteDecimal(instrucao.substring(12,31));
-				//ula.lui(rs,address);
-				break;	
-			
-			case "lb":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,16));
-				offset =  converteDecimal(instrucao.substring(12,31));
-				//ula.lb(rs,rt,offset);
-				break;	
-			
-			case "sw":
-				rs = Integer.valueOf(instrucao.substring(6,11));
-				rt = Integer.valueOf(instrucao.substring(12,16));
-				offset =  converteDecimal(instrucao.substring(12,31));
-				//ula.sw(rs,rt,offset);
-				break;
-			
+		
 			default:
-				break; */
+				break; 
 			}
 			
 		
