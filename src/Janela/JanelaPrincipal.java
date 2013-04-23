@@ -229,6 +229,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 			System.out.println("rodou");
 			try {
 				System.out.println("ler instrução");
+				Memoria memoria = new Memoria();
+				ArrayList prog = new ArrayList();
+				memoria.setCodigoFonteBinario(montador.traduzir());
+				prog = memoria.getCodigoFonteBinario();
+				for(pc = 0; pc < prog.size(); pc++){
+					ucp.lerInterpretarInstrucao(prog.get(pc).toString(), pc);
+					
+					
+				}
 				//or
 				//ucp.lerInterpretarInstrucao("00000001001010010100100000100101");
 				//sub

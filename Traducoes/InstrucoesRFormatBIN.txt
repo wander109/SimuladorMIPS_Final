@@ -12,7 +12,7 @@
 010001 mthi 
 010010 mflo 
 010011 mtlo 
-011000 mult
+011000 multi 
 011001 multu 
 011010 div 
 011011 divu 
