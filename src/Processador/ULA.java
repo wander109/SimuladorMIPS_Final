@@ -14,8 +14,8 @@ public class ULA {
 	}
 	
 	
-	public int sub(int rs, int rt){
-		int result = rs - rt;
+	public double sub(double rs, double rt){
+		double result = rs - rt;
 		return result;	
 		
 	}

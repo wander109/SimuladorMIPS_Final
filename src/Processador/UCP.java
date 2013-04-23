@@ -1,6 +1,7 @@
 package Processador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.TreeMap;
 import Memoria.*;
 import ManipulacaoArquivo.TrataArquivo;
@@ -76,31 +77,42 @@ public class UCP {
 		return registro;
 	}
 	
-	private String getBinario(int numero, int casas){
-		String aux;
-		aux = Integer.toString(numero, 2);
-		
-		
-		if(aux.length() != casas){
-			int tamFaltante = casas - aux.length();
-			for(int i = 0; i < tamFaltante; i++)
-				aux = "0" + aux;
+	private String getBinario(double n, int casas){
+		String aux = "";
+		ArrayList resto = new ArrayList();
+
+		while (n != 0){
+			resto.add(n%2);
+			n = (int)(n/2);
+		}
+		String res = "";
+		for (int i=resto.size()-1;i>=0;i--){
+			res += resto.get(i);
 		}
 		
-		return aux;
+		
+		
+		
+		
+		return res;
 	}
 	
-	private int converteParaDecimal(String binario){
-		int aux;
-		aux = Integer.parseInt(binario, 2);
-		return aux;
-	}
+	private double converteParaDecimal(String binario){
+		  double j=0;
+		    for(int i=0;i<binario.length();i++){
+		        if(binario.charAt(i)== '1'){
+		         j=j+ Math.pow(2,binario.length()-1-i);
+		     }
+
+		    }
+		    return  j;
+		}
 	
 	
 	public void lerInterpretarInstrucao(String instrucao) throws IOException{
 		System.out.println("entrou na UCP");
 		
-		int result;
+		double result;
 		String Result;
 		String op = instrucao.substring(0,6); 
 		
@@ -144,7 +156,7 @@ public class UCP {
 				break;
 			
 			case "sub":
-				int num1, num2;
+				double num1, num2;
 				num1 = num2 = 0;
 				//converte o numero binário presente na instrução para o registrador correspondente.
 				rs = acharRegistrador(instrucao.substring(6, 11));
