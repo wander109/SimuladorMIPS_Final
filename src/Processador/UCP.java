@@ -89,10 +89,12 @@ public class UCP {
 	
 	public void lerInterpretarInstrucao(String instrucao) throws IOException{
 		System.out.print("entrou na UCP");
-		String op = instrucao.substring(0,5); 
+		String op = instrucao.substring(0,6); 
+		System.out.println("\n"+op);
 		if(op.equals("000000")){ 
 			
-			funcao = String.valueOf(instrucao.subSequence(26,31));  
+			funcao = String.valueOf(instrucao.subSequence(26,32));
+			System.out.println("function: "+funcao);
 			operacao = dicionarioInstrucoesRFormat.get(funcao);
 			switch (operacao) {
 			case "add":
@@ -109,8 +111,11 @@ public class UCP {
 				valor1 = valor2 = "";
 				//converte o numero binário presente na instrução para o registrador correspondente.
 				rs = acharRegistrador(instrucao.substring(6, 11));
+				System.out.println("rs: "+rs);
 				rt = acharRegistrador(instrucao.substring(12,17));
+				System.out.println("rt: "+rt);
 				rd = acharRegistrador(instrucao.substring(18,23));
+				System.out.println("rd: "+rd);
 				//tansformo o valor que esta decimal no objeto registrador em binario para q a operação OR possa ser feita
 				valor1 = getBinario(registradores.getValorRegistrador(rs), 32);
 				valor2 = getBinario(registradores.getValorRegistrador(rt), 32);

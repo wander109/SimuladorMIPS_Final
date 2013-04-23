@@ -228,7 +228,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 			System.out.println("rodou");
 			try {
 				System.out.println("ler instrução");
-				ucp.lerInterpretarInstrucao("000000 01001 01001 01001 00000 100101");
+				ucp.lerInterpretarInstrucao("00000001001010010100100000100101");
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
