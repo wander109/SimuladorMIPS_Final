@@ -6,4 +6,6 @@ addi $t1,$t1,1
 beq $t3,$t1,Fim
 j Linha
 Fim:addi $t1,$t1,3
-exit
+addi $sp,$sp,4
+sw $t1,0($sp)
+exit: 

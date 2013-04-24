@@ -444,7 +444,7 @@ public class UCP {
 				
 				rt = acharRegistrador(instrucao.substring(11,16));
 				System.out.println("rt: "+rt);
-				if (rt == "11101"){
+				if (rs == "$sp"){
 					pilha = new ArrayList();
 					pc=pc+1;
 					break;
@@ -620,7 +620,7 @@ public class UCP {
 				rt = acharRegistrador(instrucao.substring(11,16));
 				System.out.println("rt: "+rt);
 				
-				if (rt =="11101"){
+				if (rt =="$sp" ){
 					pilha.get(pilha.lastIndexOf(instrucao));
 					pc = pc+1;
 					break;
@@ -647,7 +647,7 @@ public class UCP {
 				rt = acharRegistrador(instrucao.substring(11,16));
 				System.out.println("rt: "+rt);
 				
-				if (rt == "11101"){
+				if (rt == "$sp"){
 					pilha.add(rs);
 					pc = pc+1;
 					break;
