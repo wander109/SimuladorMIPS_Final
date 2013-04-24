@@ -620,6 +620,11 @@ public class UCP {
 				rt = acharRegistrador(instrucao.substring(11,16));
 				System.out.println("rt: "+rt);
 				
+				if (rt =="11101"){
+					pilha.get(pilha.lastIndexOf(instrucao));
+					pc = pc+1;
+					break;
+				}
 				aux = (int)converteParaDecimal(instrucao.substring(16,32));
 				System.out.println("num1 = "+ aux);
 				
