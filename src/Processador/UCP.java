@@ -144,7 +144,8 @@ public class UCP {
 		double result;
 		String Result;
 		String valor1, valor2;
-		String op = instrucao.substring(0,6); 
+		String op = instrucao.substring(0,6);
+		ArrayList pilha = null;
 		
 		if(op.equals("000000")){ 
 			
@@ -443,7 +444,11 @@ public class UCP {
 				
 				rt = acharRegistrador(instrucao.substring(11,16));
 				System.out.println("rt: "+rt);
-				
+				if (rt == "11101"){
+					pilha = new ArrayList();
+					pc=pc+1;
+					break;
+				}
 				
 				//pego o valor do registrador e transformo de bin para decimal.
 				System.out.println("Valor do registrador rs= "+ registradores.getValorRegistrador(rs));
@@ -637,6 +642,11 @@ public class UCP {
 				rt = acharRegistrador(instrucao.substring(11,16));
 				System.out.println("rt: "+rt);
 				
+				if (rt == "11101"){
+					pilha.add(rs);
+					pc = pc+1;
+					break;
+				}
 				aux = (int)converteParaDecimal(instrucao.substring(16,32));
 				System.out.println("num1 = "+ aux);
 				
