@@ -135,6 +135,21 @@ public class UCP {
 		    return  j;
 		}
 	
+	public double converteParaDecimalADDI(String binario){
+		  double j=0;
+		    for(int i=1;i<binario.length();i++){
+		        if(binario.charAt(i)== '1'){
+		        	j=j+ Math.pow(2,binario.length()-1-i);
+		        }
+		    }
+		    
+		  
+		    if (binario.charAt(0) == '1'){
+		    	j = -j;
+		    }
+		    return  j;
+		}
+	
 	
 	public int lerInterpretarInstrucao(String instrucao, int pc) throws IOException{
 		
@@ -455,7 +470,7 @@ public class UCP {
 				num1 = converteParaDecimal(registradores.getValorRegistrador(rs));
 				System.out.println("num1 = "+ num1);
 				
-				num2 = converteParaDecimal(instrucao.substring(16,32));
+				num2 = converteParaDecimalADDI(instrucao.substring(16,32));
 				System.out.println("num2 = "+ num2);
 				
 				result = ula.add(num1, num2);
