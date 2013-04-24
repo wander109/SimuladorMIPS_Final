@@ -650,8 +650,25 @@ public class UCP {
 				break;
 				
 			case "lui":
+				valor1 = valor2 = "";
+				//converte o numero binário presente na instrução para o registrador correspondente.
+				
+				rt = acharRegistrador(instrucao.substring(11,16));
+				System.out.println("rt: "+rt);
 				
 				
+				//pego o valor do registrador e transformo de bin para decimal.
+				
+				valor1 = instrucao.substring(16,32);
+				System.out.println("valor1 = "+ valor1);
+				
+				valor2 = valor1.substring(0, 16) + "0000000000000000";
+				
+				registradores.setValorRegistrador(rt, valor2);
+				System.out.println("resultado = " + Result);
+				
+				
+				System.out.println("Valor Registrador Rt= " + registradores.getValorRegistrador(rt));
 				pc = pc +1;
 				break;
 
