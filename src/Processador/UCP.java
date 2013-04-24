@@ -665,10 +665,6 @@ public class UCP {
 				valor2 = valor1.substring(0, 16) + "0000000000000000";
 				
 				registradores.setValorRegistrador(rt, valor2);
-				System.out.println("resultado = " + Result);
-				
-				
-				System.out.println("Valor Registrador Rt= " + registradores.getValorRegistrador(rt));
 				pc = pc +1;
 				break;
 
